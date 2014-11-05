@@ -54,7 +54,7 @@ class Dialog
     {
         $this->plist = new \Octris\TMDialog\Plist();
 
-        $this->registerAction('closeWindow', function($model) {
+        $this->registerAction('closeWindow', function ($model) {
             return self::ACTION_CLOSE;
         });
     }
@@ -170,13 +170,13 @@ class Dialog
             }
 
             $action = (isset($data['eventInfo']) ? $data['eventInfo']['type'] : '');
-            $model  = (isset($data['model']) ? $data['model'] : NULL);
+            $model  = (isset($data['model']) ? $data['model'] : null);
 
             if (isset($this->actions[$action])) {
                 $status = (int)$this->actions[$action]($model);
             } else {
                 $status = 0;
             }
-        } while($status >= 0);
+        } while ($status >= 0);
     }
 }
