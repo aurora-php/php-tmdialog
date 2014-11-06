@@ -20,6 +20,35 @@ namespace Octris\TMDialog;
 class Util
 {
     /**
+     * Base64 for URLs encoding.
+     *
+     * @param   string          $data                   Data to encode.
+     * @return  string                                  Encoded data.
+     */
+    public static function base64UrlEncode($data)
+    {
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+
+    /**
+     * Base64 for URLs decoding.
+     *
+     * @param   string          $data                   Data to decode.
+     * @param   string                                  Decoded data.
+     */
+    public static function base64UrlDecode($data)
+    {
+        return base64_decode(
+            str_pad(
+                strtr($data, '-_', '+/'),
+                strlen($data) % 4,
+                '=',
+                STR_PAD_RIGHT
+            )
+        );
+    }
+
+    /**
      * Execute a shell command in stdin/stdout pipe context.
      *
      * @param   string          $cmd            Command to execute.
